@@ -1,2 +1,2 @@
-# 0.unnamed
-rep no. 0
+# Hackerrank
+C++
