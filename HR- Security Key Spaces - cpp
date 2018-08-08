@@ -1,0 +1,26 @@
+//For this task, consider a message that consists of decimal digits and a key, k, 
+//which operates by shifting each digit by k places. Find the corresponding ciphertext.
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    string msg; 
+    cin >> msg;
+    int key; 
+    cin >> key;
+    
+    for(char a : msg)
+    {
+    cout << (((char)(a+key)>'9')? (char)(a+key - 10):(char)(a+key));
+    //if a=9,k=2 then a+key=11 meaning>9 then simply -10 and keep the rest, else just do a+k
+    //initially int m=stoi(msg) but less nice
+    }
+    return 0;
+
+}
