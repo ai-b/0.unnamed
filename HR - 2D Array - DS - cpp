@@ -1,0 +1,76 @@
+//There are 16 hourglasses in arr, and an hourglass sum 
+//is the sum of an hourglass' values. Calculate the 
+//hourglass sum for every hourglass in arr, 
+//then print the maximum hourglass sum.
+
+//Example of an hourglass in the matrix
+//-9 -9 -9  1 1 1 
+// 0 -9  0  4 3 2
+//-9 -9 -9  1 2 3
+// 0  0  8  6 6 0  is  -9 -9 -9 
+// 0  0  0 -2 0 0         -9            
+// 0  0  1  2 4 0      -9 -9 -9
+
+//We use the "valid" hourglass centers, that is for
+//a nxn matrix the centers of hourglasses can be
+//found only at i,j from 0 to n-2 that is
+
+// -9  0  4 3
+// -9 -9  1 2
+//  0  8  6 6    
+//  0  0 -2 0                     
+
+//and compute the sums around these valid centers
+//by adding their neighbours
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the hourglassSum function below.
+int hourglassSum( int (&a)[6][6]) {
+int maxsum=-63;//smallest possible value
+    for (int i=1;i<5;i++)
+{int sum=0;
+    for (int j=1;j<5;j++)
+    {
+    sum=a[i][j]+a[i-1][j-1]+a[i-1][j]+a[i-1][j+1]+  
+                  a[i+1][j-1]+a[i+1][j]+a[i+1][j+1]; 
+    maxsum=max(sum,maxsum);
+    
+    }
+    
+}return maxsum;
+}
+
+int main()
+{
+//ofstream fout(getenv("OUTPUT_PATH"));
+//nxn with n=6 is 6x6 matrix meaning
+//theres a (n-2)x(n-2) valid centers meaning 4x4=16 possible values
+    vector<vector<int>> arr(6);
+   // int arr[6][6];
+    for(int i=0;i<6;i++)
+    {
+        for(int j=0;i<6;j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+    /*
+    for (int i = 0; i < 6; i++) {
+        arr[i].resize(6);
+
+        for (int j = 0; j < 6; j++) {
+            cin >> arr[i][j];
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }*/
+
+    int result = hourglassSum(arr);
+
+    cout << result << "\n";
+
+    return 0;
+}
